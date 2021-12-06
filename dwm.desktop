@@ -1,0 +1,9 @@
+[Desktop Entry]
+Version=1.0
+Encoding=UTF-8
+Name=DWM Session
+Comment= Run the DWM WM
+Exec=/usr/bin/startdwm
+Icon=
+Type=Application
+DesktopNames=DWM

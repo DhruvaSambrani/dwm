@@ -268,6 +268,7 @@ static void (*handler[LASTEvent]) (XEvent *) = {
 };
 static Atom wmatom[WMLast], netatom[NetLast];
 static int running = 1;
+static int exitcode = EXIT_SUCCESS;
 static Cur *cursor[CurLast];
 static Clr **scheme;
 static Display *dpy;
@@ -1255,7 +1256,8 @@ propertynotify(XEvent *e)
 void
 quit(const Arg *arg)
 {
-	running = 0;
+	exitcode = arg->ui;
+    running = 0;
 }
 
 Monitor *
@@ -2232,5 +2234,5 @@ main(int argc, char *argv[])
 	run();
 	cleanup();
 	XCloseDisplay(dpy);
-	return EXIT_SUCCESS;
+	return exitcode;
 }

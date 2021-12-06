@@ -1,0 +1,7 @@
+while true; do
+    # Log stderror to a file 
+    dwm 2> ~/.dwm.log
+    retval=$?
+    echo $retval > /home/dhruva/test.log
+    [[ $retval -eq 1 ]] && break
+done

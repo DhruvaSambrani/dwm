@@ -97,7 +97,7 @@ static Key keys[] = {
 	{ MODKEY,        	    XK_e,                       spawn,          RUNCMD("thunar") },
 	{ MODKEY|ShiftMask,     XK_Return,                  zoom,           {0} },
 
-    { MODKEY|ControlMask,   XK_s,                       spawn,          SHCMD("maim -s > $( find ~/gdrive -type d | dmenu )/$(date +%m-%d-%H-%m).png") },
+    { MODKEY|ControlMask,   XK_s,                       spawn,          SHCMD("maim -s > $( find ~/gdrive -type d | dmenu )/$(date +%m-%d-%H-%M).png") },
     { MODKEY|ShiftMask,     XK_s,                       spawn,          SHCMD("maim -s | copyq write image/png - && copyq select 0") },
     { MODKEY,               XK_v,                       spawn,          {.v = copymenu} },
 
@@ -119,7 +119,6 @@ static Key keys[] = {
  
     { MODKEY,               XK_Menu,                    spawn,          SHCMD("trayer --expand true --widthtype request --transparent true --tint 0 --alpha 255 --edge bottom --align right --height 40 --iconspacing 4&") },
     { MODKEY|ShiftMask,     XK_Menu,                    spawn,          SHCMD("killall trayer") },
-    { MODKEY|ControlMask,   XK_Menu,                    spawn,          SHCMD("trayer --expand true --widthtype request --transparent true --tint 0 --alpha 255 --edge bottom --align right --height 40 --iconspacing 4&") },
 
     { 0,                    XF86XK_AudioLowerVolume,    spawn,          {.v = downvol} },
     { 0,                    XF86XK_AudioRaiseVolume,    spawn,          {.v = upvol} },
@@ -141,7 +140,8 @@ static Key keys[] = {
 	TAGKEYS(                XK_7,                       6)
 	TAGKEYS(                XK_8,                       7)
 	TAGKEYS(                XK_9,                       8)
-    { MODKEY|ShiftMask,     XK_c,                       quit,           {0} },
+    { MODKEY|ShiftMask,     XK_c,                       quit,           {.i = EXIT_SUCCESS} },
+    { MODKEY|ControlMask,   XK_c,                       quit,           {.i = EXIT_FAILURE} },
 };
 
 /* button definitions */
