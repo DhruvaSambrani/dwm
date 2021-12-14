@@ -43,7 +43,7 @@ install: all
 	mkdir -p ${DESTDIR}${MANPREFIX}/man1
 	sed "s/VERSION/${VERSION}/g" < dwm.1 > ${DESTDIR}${MANPREFIX}/man1/dwm.1
 	chmod 644 ${DESTDIR}${MANPREFIX}/man1/dwm.1
-	cp -f startdwm ${DESTDIR}${PREFIX}/bin
+	cp -f startdwm /usr/bin
 	chmod 755 /usr/bin/startdwm
 	cp -f dwm.desktop /usr/share/xsessions
 

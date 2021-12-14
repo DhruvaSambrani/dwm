@@ -77,12 +77,11 @@ static const char *downvol[]    = { "pulseaudio-ctl", "down", NULL };
 static const char *mutevol[]    = { "pulseaudio-ctl", "mute", NULL };
 
 
-
-
 static Key keys[] = {
 	/* modifier             key                         function        argument */
 	{ MODKEY,               XK_Return,                  spawn,          RUNCMD("kitty") },
 	{ MODKEY,               XK_d,                       spawn,          {.v = dmenucmd } },
+	{ MODKEY|ControlMask,   XK_d,                       spawn,          {.v = gtk-dmenucmd } },
 	
     { MODKEY,           	XK_F2,                      spawn,          RUNCMD("firefox") },
 	{ MODKEY,        	    XK_z,                       spawn,          RUNCMD("zoom") },
@@ -140,6 +139,10 @@ static Key keys[] = {
 	TAGKEYS(                XK_7,                       6)
 	TAGKEYS(                XK_8,                       7)
 	TAGKEYS(                XK_9,                       8)
+    
+    { MODKEY|ShiftMask,     XK_x,                       spawn,          SHCMD("systemctl suspend") },
+    { MODKEY|ControlMask,   XK_x,                       spawn,          SHCMD("systemctl hybrid-sleep") },
+    
     { MODKEY|ShiftMask,     XK_c,                       quit,           {.i = EXIT_SUCCESS} },
     { MODKEY|ControlMask,   XK_c,                       quit,           {.i = EXIT_FAILURE} },
 };
