@@ -116,14 +116,13 @@ static Key keys[] = {
     { MODKEY|ShiftMask,     XK_l,                       spawn,          RUNCMD("slock") },
 	{ MODKEY|ShiftMask,     XK_q,                       killclient,     {0} },
  
-    { MODKEY,               XK_Menu,                    spawn,          SHCMD("trayer --expand true --widthtype request --transparent true --tint 0 --alpha 255 --edge bottom --align right --height 40 --iconspacing 4&") },
+    { MODKEY,               XK_Menu,                    spawn,          SHCMD("killall trayer && trayer --expand true --widthtype request --transparent true --tint 0 --alpha 255 --edge bottom --align right --height 40 --iconspacing 4&") },
     { MODKEY|ShiftMask,     XK_Menu,                    spawn,          SHCMD("killall trayer") },
 
     { 0,                    XF86XK_AudioLowerVolume,    spawn,          {.v = downvol} },
     { 0,                    XF86XK_AudioRaiseVolume,    spawn,          {.v = upvol} },
     { 0,                    XF86XK_AudioMute,           spawn,          {.v = mutevol} },
     { 0,                    XF86XK_AudioNext,           spawn,          SHCMD("playerctl -a next") },
-    { 0|ShiftMask,          XF86XK_AudioPlay,           spawn,          SHCMD("playerctl -a pause") },
     { 0,                    XF86XK_AudioPlay,           spawn,          SHCMD("playerctl -a play-pause") },
     { 0,                    XF86XK_AudioPrev,           spawn,          SHCMD("playerctl -a previous") },
 	
