@@ -63,7 +63,9 @@ static const Layout layouts[] = {
 /* Run applications */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 
-static const char *dmenucmd[]   = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_primary, "-sf", col_gray4, NULL };
+static const char *dmenucmd[]   = { "dmenu_run", "-i", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_primary, "-sf", col_gray4, NULL };
+static const char *gtk_dmenucmd[]   = { "gtk_dmenu_run", "-i", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_primary, "-sf", col_gray4, NULL };
+
 static const char *signalcmd[]  = { "signal-desktop", "--start-in-tray", "--use-tray-icon", NULL };
 
 static const char *sptcmd[]     = { "kitty", "spt", NULL };
@@ -80,8 +82,8 @@ static const char *mutevol[]    = { "pulseaudio-ctl", "mute", NULL };
 static Key keys[] = {
 	/* modifier             key                         function        argument */
 	{ MODKEY,               XK_Return,                  spawn,          RUNCMD("kitty") },
-	{ MODKEY,               XK_d,                       spawn,          {.v = dmenucmd } },
-	{ MODKEY|ControlMask,   XK_d,                       spawn,          {.v = gtk-dmenucmd } },
+	{ MODKEY|ControlMask,   XK_d,                       spawn,          {.v = dmenucmd } },
+	{ MODKEY,               XK_d,                       spawn,          {.v = gtk_dmenucmd } },
 	
     { MODKEY,           	XK_F2,                      spawn,          RUNCMD("firefox") },
 	{ MODKEY,        	    XK_z,                       spawn,          RUNCMD("zoom") },
@@ -98,6 +100,7 @@ static Key keys[] = {
 
     { MODKEY|ControlMask,   XK_s,                       spawn,          SHCMD("maim -s > $( find ~/gdrive -type d | dmenu )/$(date +%m-%d-%H-%M).png") },
     { MODKEY|ShiftMask,     XK_s,                       spawn,          SHCMD("maim -s | copyq write image/png - && copyq select 0") },
+    { MODKEY,               XK_f,                       spawn,          SHCMD("feh --randomize personal/wallpaper --bg-fill --no-fehbg") },
     { MODKEY,               XK_v,                       spawn,          {.v = copymenu} },
 
     { MODKEY,               XK_b,                       togglebar,      {0} },

@@ -1,0 +1,2 @@
+#!/bin/sh
+gtk-launch $( ls /usr/share/applications | dmenu "$@" ) &
