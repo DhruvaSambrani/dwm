@@ -13,7 +13,7 @@ static const char col_gray1[]       = "#222222";
 static const char col_gray2[]       = "#444444";
 static const char col_gray3[]       = "#bbbbbb";
 static const char col_gray4[]       = "#eeeeee";
-static const char col_primary[]     = "#e20960";
+static const char col_primary[]     = "#cc0047";
 static const char col_secondary[]   = "#5907b7";
 static const char *colors[][3]      = {
 	/*               fg         bg         border   */
@@ -22,7 +22,7 @@ static const char *colors[][3]      = {
 };
 
 /* tagging */
-static const char *tags[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9" };
+static const char *tags[] = { "1", "2", "Discord", "Signal", "5", "6", "7", "8", "Zoom" };
 
 static const Rule rules[] = {
 	/* xprop(1):
@@ -30,7 +30,9 @@ static const Rule rules[] = {
 	 *	WM_NAME(STRING) = title
 	 */
 	/* class        instance    title       tags mask       isfloating  monitor */
-	{ "zoom",       NULL,       NULL,       1<<8,           0,          -1 },
+	{ "zoom",       NULL,       NULL,       1<<8,           1,          -1 },
+	{ "discord",    NULL,       NULL,       1<<2,           0,          -1 },
+	{ "Signal",     NULL,       NULL,       1<<3,           0,          -1 },
 };
 
 /* layout(s) */
@@ -119,7 +121,7 @@ static Key keys[] = {
     { MODKEY|ShiftMask,     XK_l,                       spawn,          RUNCMD("slock") },
 	{ MODKEY|ShiftMask,     XK_q,                       killclient,     {0} },
  
-    { MODKEY,               XK_Menu,                    spawn,          SHCMD("killall trayer && trayer --expand true --widthtype request --transparent true --tint 0 --alpha 255 --edge bottom --align right --height 40 --iconspacing 4&") },
+    { MODKEY,               XK_Menu,                    spawn,          SHCMD("killall trayer; trayer --expand true --widthtype request --tint 0 --edge bottom --align right --height 40 --iconspacing 4&") },
     { MODKEY|ShiftMask,     XK_Menu,                    spawn,          SHCMD("killall trayer") },
 
     { 0,                    XF86XK_AudioLowerVolume,    spawn,          {.v = downvol} },
