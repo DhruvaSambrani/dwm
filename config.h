@@ -30,6 +30,7 @@ static const Rule rules[] = {
 	 *	WM_NAME(STRING) = title
 	 */
 	/* class        instance    title       tags mask       isfloating  monitor */
+	{ "Yad",        "yad",      "Help",     0,              1,          -1 },
 	{ "zoom",       NULL,       NULL,       1<<8,           1,          -1 },
 	{ "discord",    NULL,       NULL,       1<<2,           0,          -1 },
 	{ "Signal",     NULL,       NULL,       1<<3,           0,          -1 },
@@ -75,12 +76,6 @@ static const char *calccmd[]    = { "kitty", "zsh", "-c", "CALCURSE_PAGER=/home/
 
 static const char *copymenu[]   = { "copyq", "menu", NULL};
 
-/* system settings */
-static const char *upvol[]      = { "pulseaudio-ctl", "up", NULL };
-static const char *downvol[]    = { "pulseaudio-ctl", "down", NULL };
-static const char *mutevol[]    = { "pulseaudio-ctl", "mute", NULL };
-
-
 static Key keys[] = {
 	/* modifier             key                         function        argument */
 	{ MODKEY,               XK_Return,                  spawn,          RUNCMD("kitty") },
@@ -124,9 +119,9 @@ static Key keys[] = {
     { MODKEY,               XK_Menu,                    spawn,          SHCMD("killall trayer; trayer --expand true --widthtype request --tint 0 --edge bottom --align right --height 40 --iconspacing 4&") },
     { MODKEY|ShiftMask,     XK_Menu,                    spawn,          SHCMD("killall trayer") },
 
-    { 0,                    XF86XK_AudioLowerVolume,    spawn,          {.v = downvol} },
-    { 0,                    XF86XK_AudioRaiseVolume,    spawn,          {.v = upvol} },
-    { 0,                    XF86XK_AudioMute,           spawn,          {.v = mutevol} },
+    { 0,                    XF86XK_AudioLowerVolume,    spawn,          SHCMD("pulseaudio-ctl down && canberra-gtk-play -i audio-volume-change -l 2 -V 5") },
+    { 0,                    XF86XK_AudioRaiseVolume,    spawn,          SHCMD("pulseaudio-ctl up && canberra-gtk-play -i audio-volume-change -l 2 -V 5") },
+    { 0,                    XF86XK_AudioMute,           spawn,          SHCMD("pulseaudio-ctl mute && canberra-gtk-play -i audio-volume-change -l 2 -V 5") },
     { 0,                    XF86XK_AudioNext,           spawn,          SHCMD("playerctl -a next") },
     { 0,                    XF86XK_AudioPlay,           spawn,          SHCMD("playerctl -a play-pause") },
     { 0,                    XF86XK_AudioPrev,           spawn,          SHCMD("playerctl -a previous") },
