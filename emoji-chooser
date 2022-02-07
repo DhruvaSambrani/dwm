@@ -1,0 +1,16 @@
+#! /bin/zsh
+
+emojify --list | tail -n +5 | sed -E "s/(.*?)[[:space:]].*?/\1/g" | sort | dmenu | emojify | tr -d \\n | xclip -in -selection clipboard
+
+term=$(xdotool search --class kitty)
+now=$(xdotool getwindowfocus)
+
+echo $term
+echo $now
+
+if [[ $term =~ ".*"$now".*" ]] then;
+    xdotool key --clearmodifiers "ctrl+shift+v"
+else
+    xdotool key --clearmodifiers "ctrl+v"
+fi
+

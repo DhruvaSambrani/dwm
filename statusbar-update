@@ -1,0 +1,23 @@
+#! /bin/bash
+
+function getnetwork(){
+    network=$(nmcli -t -f active,ssid dev wifi | grep '^yes' | sed "s/.*\:(.*)/\1/" -E)
+    [[ -z "$network" ]] && network="none"
+    echo $network
+}
+function getevents() {
+    d=$(calcurse -n | tail -1 | sed "s/^[[:space:]]*//g")
+    [[ -z "$d" ]] && d="Freee!"
+    echo $d
+}
+function getbattery() {
+    val=$(cat /sys/class/power_supply/BAT0/capacity)
+    [[ $(cat /sys/class/power_supply/BAT0/status) = "Discharging" ]] || val="⟨"$val"⟩"
+    echo $val
+}
+function getstatus() {
+    echo  " $(getevents) │ $(date +%A\ %b\ %d\ \|\ %R) | $(getbattery) "
+}
+xsetroot -name "$(getstatus)"
+
+

@@ -43,10 +43,19 @@ install: all
 	mkdir -p ${DESTDIR}${MANPREFIX}/man1
 	sed "s/VERSION/${VERSION}/g" < dwm.1 > ${DESTDIR}${MANPREFIX}/man1/dwm.1
 	chmod 644 ${DESTDIR}${MANPREFIX}/man1/dwm.1
+	#
 	cp -f gtk_dmenu_run /usr/bin
 	cp -f startdwm /usr/bin
+	cp -f emoji-chooser /usr/bin
+	cp -f statusbar-update /usr/bin
+	cp -f passmenu /usr/bin
+	#
 	cp -f dwm.desktop /usr/share/xsessions
+	#
 	chmod 755 /usr/bin/startdwm
+	chmod 755 /usr/bin/emoji-chooser
+	chmod 755 /usr/bin/statusbar-update
+	chmod 755 /usr/bin/passmenu
 	chmod 755 /usr/bin/gtk_dmenu_run
 
 uninstall:

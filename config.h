@@ -7,7 +7,7 @@ static const unsigned int borderpx  = 3;        /* border pixel of windows */
 static const unsigned int snap      = 32;       /* snap pixel */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
-static const char *fonts[]          = { "Fira Code Retina:size=10" };
+static const char *fonts[]          = { "Fira Code:size=10", "Noto Color Emoji:size=10" };
 static const char dmenufont[]       = "Fira Code Retina:size=10";
 static const char col_gray1[]       = "#222222";
 static const char col_gray2[]       = "#444444";
@@ -89,7 +89,7 @@ static Key keys[] = {
     { MODKEY,               XF86XK_AudioPlay,           spawn,          {.v = sptcmd} },
 	{ MODKEY,               XK_s,                       spawn,          {.v = signalcmd } },
 
-	{ MODKEY,        	    XK_r,                       spawn,          RUNCMD("/home/dhruva/.dwm/passmenu") },
+	{ MODKEY,        	    XK_r,                       spawn,          RUNCMD("passmenu") },
 
 	{ MODKEY|ShiftMask,     XK_p,                       spawn,          RUNCMD("pavucontrol") },
 	{ MODKEY,        	    XK_e,                       spawn,          RUNCMD("thunar") },
@@ -98,6 +98,7 @@ static Key keys[] = {
     { MODKEY|ControlMask,   XK_s,                       spawn,          SHCMD("maim -s > $( find ~/gdrive -type d | dmenu )/$(date +%m-%d-%H-%M).png") },
     { MODKEY|ShiftMask,     XK_s,                       spawn,          SHCMD("maim -s | copyq write image/png - && copyq select 0") },
     { MODKEY,               XK_f,                       spawn,          SHCMD("feh --randomize personal/wallpaper --bg-fill --no-fehbg") },
+    { MODKEY,               XK_period,                  spawn,          RUNCMD("emoji-chooser") },
     { MODKEY,               XK_v,                       spawn,          {.v = copymenu} },
 
     { MODKEY,               XK_b,                       togglebar,      {0} },
