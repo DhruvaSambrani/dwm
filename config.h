@@ -18,7 +18,7 @@ static const char col_secondary[]   = "#5907b7";
 static const char *colors[][3]      = {
 	/*               fg         bg         border   */
 	[SchemeNorm] = { col_gray3, col_gray1, col_secondary },
-	[SchemeSel]  = { col_gray4, col_gray2,  col_primary  },
+	[SchemeSel]  = { col_gray4, col_gray2, col_primary   },
 };
 
 /* tagging */
@@ -39,13 +39,13 @@ static const Rule rules[] = {
 /* layout(s) */
 static const float mfact     = 0.55; /* factor of master area size [0.05..0.95] */
 static const int nmaster     = 1;    /* number of clients in master area */
-static const int resizehints = 1;    /* 1 means respect size hints in tiled resizals */
+static const int resizehints = 0;    /* 1 means respect size hints in tiled resizals */
 static const int lockfullscreen = 1; /* 1 will force focus on the fullscreen window */
 
 static const Layout layouts[] = {
 	/* symbol   arrange function */
-	{ "T",      tile },    /* first entry is default */
-	{ "X",      NULL },    /* no layout function means floating behavior */
+	{ "T",      tile    },    /* first entry is default */
+	{ "X",      NULL    },    /* no layout function means floating behavior */
 	{ "M",      monocle },
 };
 
@@ -66,15 +66,12 @@ static const Layout layouts[] = {
 /* Run applications */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 
-static const char *dmenucmd[]   = { "dmenu_run", "-i", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_primary, "-sf", col_gray4, NULL };
-static const char *gtk_dmenucmd[]   = { "gtk_dmenu_run", "-i", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_primary, "-sf", col_gray4, NULL };
-
-static const char *signalcmd[]  = { "signal-desktop", "--start-in-tray", "--use-tray-icon", NULL };
-
-static const char *sptcmd[]     = { "kitty", "spt", NULL };
-static const char *calccmd[]    = { "kitty", "zsh", "-c", "CALCURSE_PAGER=/home/dhruva/.scripts/tools/calcurse-pager calcurse", NULL };
-
-static const char *copymenu[]   = { "copyq", "menu", NULL};
+static const char *dmenucmd[]     = { "dmenu_run", "-i", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_primary, "-sf", col_gray4, NULL };
+static const char *gtk_dmenucmd[] = { "gtk_dmenu_run", "-i", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_primary, "-sf", col_gray4, NULL };
+static const char *signalcmd[]    = { "signal-desktop", "--start-in-tray", "--use-tray-icon", NULL };
+static const char *sptcmd[]       = { "kitty", "spt", NULL };
+static const char *calccmd[]      = { "kitty", "zsh", "-c", "CALCURSE_PAGER=/home/dhruva/.scripts/tools/calcurse-pager calcurse", NULL };
+static const char *copymenu[]     = { "copyq", "menu", NULL};
 
 static Key keys[] = {
 	/* modifier             key                         function        argument */
@@ -110,7 +107,7 @@ static Key keys[] = {
 	{ MODKEY,               XK_l,                       setmfact,       {.f = +0.05} },
 	
     { MODKEY,               XK_t,                       setlayout,      {.v = &layouts[0]} },
-	{ MODKEY,               XK_f,                       setlayout,      {.v = &layouts[1]} },
+	{ MODKEY,               XK_x,                       setlayout,      {.v = &layouts[1]} },
 	{ MODKEY,               XK_m,                       setlayout,      {.v = &layouts[2]} },
 
     { MODKEY,               XK_Tab,                     view,           {0} },
@@ -120,9 +117,9 @@ static Key keys[] = {
     { MODKEY,               XK_Menu,                    spawn,          SHCMD("killall trayer; trayer --expand true --widthtype request --tint 0 --edge bottom --align right --height 40 --iconspacing 4&") },
     { MODKEY|ShiftMask,     XK_Menu,                    spawn,          SHCMD("killall trayer") },
 
-    { 0,                    XF86XK_AudioLowerVolume,    spawn,          SHCMD("pulseaudio-ctl down && canberra-gtk-play -i audio-volume-change -l 2 -V 5") },
-    { 0,                    XF86XK_AudioRaiseVolume,    spawn,          SHCMD("pulseaudio-ctl up && canberra-gtk-play -i audio-volume-change -l 2 -V 5") },
-    { 0,                    XF86XK_AudioMute,           spawn,          SHCMD("pulseaudio-ctl mute && canberra-gtk-play -i audio-volume-change -l 2 -V 5") },
+    { 0,                    XF86XK_AudioLowerVolume,    spawn,          SHCMD("pamixer -d 5 && audio-notify") },
+    { 0,                    XF86XK_AudioRaiseVolume,    spawn,          SHCMD("pamixer -i 5 && audio-notify") },
+    { 0,                    XF86XK_AudioMute,           spawn,          SHCMD("pamixer -t && audio-notify") },
     { 0,                    XF86XK_AudioNext,           spawn,          SHCMD("playerctl -a next") },
     { 0,                    XF86XK_AudioPlay,           spawn,          SHCMD("playerctl -a play-pause") },
     { 0,                    XF86XK_AudioPrev,           spawn,          SHCMD("playerctl -a previous") },

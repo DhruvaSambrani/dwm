@@ -1,0 +1,12 @@
+#! /bin/zsh
+vol=$(pamixer --get-volume)
+mute=$(pamixer --get-mute)
+if [[ $mute = "true" ]] then;
+    muteicon="audio-volume-muted"
+else
+    muteicon="audio-volume-high"
+fi
+sink=$(pamixer --get-default-sink | tail -1 | sed -E "s/.*? .*? \"(.*?)\"/\1/g")
+dunstify "Volume Information" "$sink" -h int:value:$vol -r 1432 -i $muteicon
+canberra-gtk-play -i audio-volume-change -V 10
+
