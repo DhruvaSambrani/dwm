@@ -70,6 +70,7 @@ static const char *dmenucmd[]     = { "dmenu_run", "-i", "-m", dmenumon, "-fn", 
 static const char *gtk_dmenucmd[] = { "gtk_dmenu_run", "-i", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_primary, "-sf", col_gray4, NULL };
 static const char *signalcmd[]    = { "signal-desktop", "--start-in-tray", "--use-tray-icon", NULL };
 static const char *sptcmd[]       = { "kitty", "spt", NULL };
+static const char *wacmd[]       = { "kitty", "whatscli", NULL };
 static const char *calccmd[]      = { "kitty", "zsh", "-c", "CALCURSE_PAGER=/home/dhruva/.scripts/tools/calcurse-pager calcurse", NULL };
 static const char *copymenu[]     = { "copyq", "menu", NULL};
 
@@ -81,7 +82,7 @@ static Key keys[] = {
 	
     { MODKEY,           	XK_F2,                      spawn,          RUNCMD("firefox") },
 	{ MODKEY,        	    XK_z,                       spawn,          RUNCMD("zoom") },
-	{ MODKEY,               XK_w,                       spawn,          RUNCMD("whatsapp-nativefier") },
+	{ MODKEY,               XK_w,                       spawn,          {.v = wacmd } },
 	{ MODKEY|ShiftMask,     XK_d,                       spawn,          RUNCMD("discord") },
     { MODKEY,               XF86XK_AudioPlay,           spawn,          {.v = sptcmd} },
 	{ MODKEY,               XK_s,                       spawn,          {.v = signalcmd } },
@@ -125,7 +126,7 @@ static Key keys[] = {
     { 0,                    XF86XK_AudioPrev,           spawn,          SHCMD("playerctl -a previous") },
 	
     { MODKEY,               XK_Delete,                  spawn,          RUNCMD("networkmanager_dmenu") },
-    { MODKEY,               XK_Insert,                  spawn,          RUNCMD("bluetoothctl_dmenu") },
+    { MODKEY,               XK_Insert,                  spawn,          RUNCMD("bluetoothctl-dmenu") },
 
     TAGKEYS(                XK_1,                       0)
 	TAGKEYS(                XK_2,                       1)
