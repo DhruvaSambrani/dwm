@@ -94,7 +94,7 @@ static Key keys[] = {
 
     { MODKEY|ControlMask,   XK_s,                       spawn,          SHCMD("maim -s > $( find ~/gdrive -type d | dmenu )/$(date +%m-%d-%H-%M).png") },
     { MODKEY|ShiftMask,     XK_s,                       spawn,          SHCMD("maim -s | copyq write image/png - && copyq select 0") },
-    { MODKEY,               XK_f,                       spawn,          SHCMD("feh --randomize personal/wallpaper --bg-fill --no-fehbg") },
+    { MODKEY,               XK_f,                       spawn,          SHCMD("feh --randomize gdrive/wallpaper --bg-fill --no-fehbg") },
     { MODKEY,               XK_period,                  spawn,          RUNCMD("emoji-chooser") },
     { MODKEY,               XK_v,                       spawn,          {.v = copymenu} },
 
@@ -114,7 +114,7 @@ static Key keys[] = {
     { MODKEY|ShiftMask,     XK_l,                       spawn,          RUNCMD("slock") },
 	{ MODKEY|ShiftMask,     XK_q,                       killclient,     {0} },
  
-    { MODKEY,               XK_Menu,                    spawn,          SHCMD("killall trayer; trayer --expand true --widthtype request --tint 0 --edge bottom --align right --height 40 --iconspacing 4&") },
+    { MODKEY,               XK_Menu,                    spawn,          SHCMD("killall trayer; trayer --expand true --widthtype request --tint 255 --edge bottom --align right --height 40 --iconspacing 4&") },
     { MODKEY|ShiftMask,     XK_Menu,                    spawn,          SHCMD("killall trayer") },
 
     { 0,                    XF86XK_AudioLowerVolume,    spawn,          SHCMD("pamixer -d 5 && audio-notify") },
