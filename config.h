@@ -93,7 +93,7 @@ static Key keys[] = {
 	{ MODKEY,        	    XK_e,                       spawn,          RUNCMD("thunar") },
 	{ MODKEY|ShiftMask,     XK_Return,                  zoom,           {0} },
 
-    { MODKEY|ControlMask,   XK_s,                       spawn,          SHCMD("maim -s > $( find ~/gdrive -type d | dmenu )/$(date +%m-%d-%H-%M).png") },
+    { MODKEY|ControlMask,   XK_s,                       spawn,          SHCMD("maim -s > $( find ~/idrive -type d | dmenu )/$(date +%m-%d-%H-%M).png") },
     { MODKEY|ShiftMask,     XK_s,                       spawn,          SHCMD("maim -s | copyq write image/png - && copyq select 0") },
     { MODKEY,               XK_f,                       spawn,          SHCMD("feh --randomize gdrive/wallpaper --bg-fill --no-fehbg") },
     { MODKEY,               XK_period,                  spawn,          RUNCMD("emoji-chooser") },
@@ -118,8 +118,10 @@ static Key keys[] = {
     { MODKEY,               XK_Menu,                    spawn,          SHCMD("killall trayer; trayer --expand true --widthtype request --tint 255 --edge bottom --align right --height 40 --iconspacing 4&") },
     { MODKEY|ShiftMask,     XK_Menu,                    spawn,          SHCMD("killall trayer") },
 
-    { 0,                    XF86XK_AudioLowerVolume,    spawn,          SHCMD("pamixer -d 5 && audio-notify") },
+    { 0,                    XF86XK_MonBrightnessDown,   spawn,          SHCMD("light -U 10") },
+    { 0,                    XF86XK_MonBrightnessUp,     spawn,          SHCMD("light -A 10") },
     { 0,                    XF86XK_AudioRaiseVolume,    spawn,          SHCMD("pamixer -i 5 && audio-notify") },
+    { 0,                    XF86XK_AudioLowerVolume,   spawn,          SHCMD("pamixer -d 5 && audio-notify") },
     { 0,                    XF86XK_AudioMute,           spawn,          SHCMD("pamixer -t && audio-notify") },
     { 0,                    XF86XK_AudioNext,           spawn,          SHCMD("playerctl -a next") },
     { 0,                    XF86XK_AudioPlay,           spawn,          SHCMD("playerctl -a play-pause") },
