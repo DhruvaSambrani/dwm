@@ -6,7 +6,11 @@ static const unsigned int borderpx = 3; /* border pixel of windows */
 static const unsigned int snap = 32;    /* snap pixel */
 static const int showbar = 1;           /* 0 means no bar */
 static const int topbar = 1;            /* 0 means bottom bar */
-static const char *fonts[] = {"Fira Code:size=8", "Noto Color Emoji:size=8"};
+static const char *fonts[] = {
+    "Fira Code Retina:size=10",
+    "Noto Color Emoji:size=10",
+    "FuraCode Nerd Font:size=13",
+};
 static const char dmenufont[] = "Fira Code Retina:size=10";
 static const char col_gray1[] = "#222222";
 static const char col_gray2[] = "#444444";
@@ -21,8 +25,7 @@ static const char *colors[][3] = {
 };
 
 /* tagging */
-static const char *tags[] = {"1", "2", "Discord", "Signal", "5",
-                             "6", "7", "8",       "Zoom"};
+static const char *tags[] = {"1", "2", "ﭮ", "", "", "6", "7", "", ""};
 
 static const Rule rules[] = {
     /* xprop(1):
@@ -31,10 +34,12 @@ static const Rule rules[] = {
      */
     /* class        instance    title       tags mask       isfloating  monitor
      */
-    {"Yad", "yad", "Help", 0, 1, -1},
+    {"Yad", "yad", "Termbin Get", 0, 1, -1},
     {"zoom", NULL, NULL, 1 << 8, 1, -1},
     {"discord", NULL, NULL, 1 << 2, 0, -1},
     {"Signal", NULL, NULL, 1 << 3, 0, -1},
+    {"Xournalpp", NULL, NULL, 1 << 4, 0, -1},
+    {"VSCodium", NULL, NULL, 1 << 7, 0, -1},
 };
 
 /* layout(s) */
@@ -87,6 +92,7 @@ static const char *gtk_dmenucmd[] = {
 static const char *signalcmd[] = {"signal-desktop", "--start-in-tray",
                                   "--use-tray-icon", NULL};
 static const char *sptcmd[] = {"kitty", "spt", NULL};
+static const char *filescmd[] = {"kitty", "ranger", NULL};
 static const char *calccmd[] = {
     "kitty", "zsh", "-c",
     "CALCURSE_PAGER=/home/dhruva/.scripts/tools/calcurse-pager calcurse", NULL};
@@ -109,7 +115,7 @@ static Key keys[] = {
     {MODKEY, XK_r, spawn, RUNCMD("passmenu")},
 
     {MODKEY | ShiftMask, XK_p, spawn, RUNCMD("pavucontrol")},
-    {MODKEY, XK_e, spawn, RUNCMD("thunar")},
+    {MODKEY, XK_e, spawn, {.v = filescmd}},
     {MODKEY | ShiftMask, XK_Return, zoom, {0}},
 
     {MODKEY | ControlMask, XK_s, spawn,

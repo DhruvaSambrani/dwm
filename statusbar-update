@@ -16,7 +16,7 @@ function getbattery() {
     echo $val
 }
 function getstatus() {
-    echo  " $(getevents) │ $(date +%A\ %b\ %d\ \|\ %R) | $(getbattery) "
+    echo  " $(getevents) │ $(date +%A\ %b\ %d\ \│\ %R) │ $(getbattery) "
 }
 xsetroot -name "$(getstatus)"
 

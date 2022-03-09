@@ -45,25 +45,20 @@ install: all
 	chmod 644 ${DESTDIR}${MANPREFIX}/man1/dwm.1
 	cp -f dwm.desktop /usr/share/xsessions
 	#
-	cp -f gtk_dmenu_run /usr/bin
 	cp -f startdwm /usr/bin
-	cp -f emoji-chooser /usr/bin
 	cp -f statusbar-update /usr/bin
-	cp -f passmenu /usr/bin
 	cp -f audio-notify /usr/bin
 	#
 	chmod 755 /usr/bin/startdwm
-	chmod 755 /usr/bin/emoji-chooser
 	chmod 755 /usr/bin/statusbar-update
-	chmod 755 /usr/bin/passmenu
-	chmod 755 /usr/bin/gtk_dmenu_run
 	chmod 755 /usr/bin/audio-notify
 
 uninstall:
 	rm -f ${DESTDIR}${PREFIX}/bin/dwm\
 		${DESTDIR}${MANPREFIX}/man1/dwm.1\
 		/usr/bin/startdwm\
-		/usr/bin/gtk_dmenu_run\
+		/usr/bin/statusbar-update\
+		/usr/bin/audio-notify\
 		/usr/share/xsessions/dwm.desktop
 
 .PHONY: all options clean dist install uninstall
