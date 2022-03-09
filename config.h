@@ -7,7 +7,7 @@ static const unsigned int snap = 32;    /* snap pixel */
 static const int showbar = 1;           /* 0 means no bar */
 static const int topbar = 1;            /* 0 means bottom bar */
 static const char *fonts[] = {
-    "Fira Code Retina:size=10",
+    "Fira Code Medium:size=10",
     "Noto Color Emoji:size=10",
     "FuraCode Nerd Font:size=13",
 };
@@ -15,7 +15,7 @@ static const char dmenufont[] = "Fira Code Retina:size=10";
 static const char col_gray1[] = "#222222";
 static const char col_gray2[] = "#444444";
 static const char col_gray3[] = "#bbbbbb";
-static const char col_gray4[] = "#eeeeee";
+static const char col_gray4[] = "#ffffff";
 static const char col_primary[] = "#cc0047";
 static const char col_secondary[] = "#5907b7";
 static const char *colors[][3] = {
@@ -81,14 +81,9 @@ static const Layout layouts[] = {
 static char dmenumon[2] =
     "0"; /* component of dmenucmd, manipulated in spawn() */
 
-static const char *dmenucmd[] = {"dmenu_run", "-i",      "-m",  dmenumon,
-                                 "-fn",       dmenufont, "-nb", col_gray1,
-                                 "-nf",       col_gray3, "-sb", col_primary,
-                                 "-sf",       col_gray4, NULL};
-static const char *gtk_dmenucmd[] = {
-    "gtk_dmenu_run", "-i",        "-m",      dmenumon,  "-fn",
-    dmenufont,       "-nb",       col_gray1, "-nf",     col_gray3,
-    "-sb",           col_primary, "-sf",     col_gray4, NULL};
+static const char *dmenucmd[] = {"dmenu_run", "-i", "-m", dmenumon, NULL};
+static const char *gtk_dmenucmd[] = {"gtk_dmenu_run", "-i", "-m", dmenumon,
+                                     NULL};
 static const char *signalcmd[] = {"signal-desktop", "--start-in-tray",
                                   "--use-tray-icon", NULL};
 static const char *sptcmd[] = {"kitty", "spt", NULL};
