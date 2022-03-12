@@ -102,11 +102,12 @@ static Key keys[] = {
 
     {MODKEY, XK_F2, spawn, RUNCMD("firefox")},
     {MODKEY, XK_z, spawn, RUNCMD("zoom")},
-    {MODKEY, XK_w, spawn, RUNCMD("whatsapp-for-linux")},
+    {MODKEY, XK_w, spawn, RUNCMD("whatsapp-nativefier")},
     {MODKEY | ShiftMask, XK_d, spawn, RUNCMD("discord")},
     {MODKEY, XF86XK_AudioPlay, spawn, {.v = sptcmd}},
     {MODKEY, XK_s, spawn, {.v = signalcmd}},
 
+    {MODKEY | ShiftMask, XK_t, spawn, RUNCMD("todo")},
     {MODKEY, XK_r, spawn, RUNCMD("passmenu")},
 
     {MODKEY | ShiftMask, XK_p, spawn, RUNCMD("pavucontrol")},
