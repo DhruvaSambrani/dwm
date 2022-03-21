@@ -81,9 +81,7 @@ static const Layout layouts[] = {
 static char dmenumon[2] =
     "0"; /* component of dmenucmd, manipulated in spawn() */
 
-static const char *dmenucmd[] = {"dmenu_run", "-i", "-m", dmenumon, NULL};
-static const char *gtk_dmenucmd[] = {"gtk_dmenu_run", "-i", "-m", dmenumon,
-                                     NULL};
+static const char *dmenucmd[] = {"dmenu-all", NULL};
 static const char *signalcmd[] = {"signal-desktop", "--start-in-tray",
                                   "--use-tray-icon", NULL};
 static const char *sptcmd[] = {"kitty", "spt", NULL};
@@ -97,8 +95,7 @@ static Key keys[] = {
     /* modifier             key                         function        argument
      */
     {MODKEY, XK_Return, spawn, RUNCMD("kitty")},
-    {MODKEY | ControlMask, XK_d, spawn, {.v = dmenucmd}},
-    {MODKEY, XK_d, spawn, {.v = gtk_dmenucmd}},
+    {MODKEY, XK_d, spawn, {.v = dmenucmd}},
 
     {MODKEY, XK_F2, spawn, RUNCMD("firefox")},
     {MODKEY, XK_z, spawn, RUNCMD("zoom")},
