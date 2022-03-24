@@ -40,6 +40,7 @@ static const Rule rules[] = {
     {"Signal", NULL, NULL, 1 << 3, 0, -1},
     {"Xournalpp", NULL, NULL, 1 << 4, 0, -1},
     {"VSCodium", NULL, NULL, 1 << 7, 0, -1},
+    {"whatsapp-nativefier-d40211", NULL, NULL, 1 << 3, 0, -1},
 };
 
 /* layout(s) */
