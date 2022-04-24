@@ -16,12 +16,12 @@ static const char col_gray1[] = "#222222";
 static const char col_gray2[] = "#444444";
 static const char col_gray3[] = "#bbbbbb";
 static const char col_gray4[] = "#ffffff";
-static const char col_primary[] = "#cc0047";
-static const char col_secondary[] = "#5907b7";
+static const char col_primary[] = "#2bafc6";
+static const char col_secondary[] = "#11c654";
 static const char *colors[][3] = {
     /*               fg         bg         border   */
-    [SchemeNorm] = {col_gray3, col_gray1, col_secondary},
-    [SchemeSel] = {col_gray4, col_gray2, col_primary},
+    [SchemeNorm] = {col_primary, col_gray1, col_gray1},
+    [SchemeSel] = {col_secondary, col_gray1, col_primary},
 };
 
 /* tagging */
@@ -35,7 +35,8 @@ static const Rule rules[] = {
     /* class        instance    title       tags mask       isfloating  monitor
      */
     {"Yad", "yad", "Termbin Get", 0, 1, -1},
-    {"zoom", NULL, NULL, 1 << 8, 1, -1},
+    {NULL, NULL, "Zoom Meeting", 1 << 8, 1, -1},
+    {NULL, NULL, "Zoom", 1 << 8, 1, -1},
     {"discord", NULL, NULL, 1 << 2, 0, -1},
     {"Signal", NULL, NULL, 1 << 3, 0, -1},
     {"Xournalpp", NULL, NULL, 1 << 4, 0, -1},
@@ -83,10 +84,8 @@ static char dmenumon[2] =
     "0"; /* component of dmenucmd, manipulated in spawn() */
 
 static const char *dmenucmd[] = {"dmenu-all", NULL};
-static const char *signalcmd[] = {"signal-desktop", "--start-in-tray",
-                                  "--use-tray-icon", NULL};
+static const char *signalcmd[] = {"signal-desktop", "--use-tray-icon", NULL};
 static const char *sptcmd[] = {"kitty", "spt", NULL};
-static const char *filescmd[] = {"kitty", "ranger", NULL};
 static const char *calccmd[] = {
     "kitty", "zsh", "-c",
     "CALCURSE_PAGER=/home/dhruva/.scripts/tools/calcurse-pager calcurse", NULL};
@@ -109,7 +108,7 @@ static Key keys[] = {
     {MODKEY, XK_r, spawn, RUNCMD("passmenu")},
 
     {MODKEY | ShiftMask, XK_p, spawn, RUNCMD("pavucontrol")},
-    {MODKEY, XK_e, spawn, {.v = filescmd}},
+    {MODKEY, XK_e, spawn, RUNCMD("nautilus")},
     {MODKEY | ShiftMask, XK_Return, zoom, {0}},
 
     {MODKEY | ControlMask, XK_s, spawn,
