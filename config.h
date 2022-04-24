@@ -4,8 +4,10 @@
 /* appearance */
 static const unsigned int borderpx = 3; /* border pixel of windows */
 static const unsigned int snap = 32;    /* snap pixel */
-static const int showbar = 1;           /* 0 means no bar */
-static const int topbar = 1;            /* 0 means bottom bar */
+static const int swallowfloating =
+    1;                        /* 1 means swallow floating windows by default */
+static const int showbar = 1; /* 0 means no bar */
+static const int topbar = 1;  /* 0 means bottom bar */
 static const char *fonts[] = {
     "Fira Code Medium:size=10",
     "Noto Color Emoji:size=10",
@@ -32,17 +34,18 @@ static const Rule rules[] = {
      *	WM_CLASS(STRING) = instance, class
      *	WM_NAME(STRING) = title
      */
-    /* class        instance    title       tags mask       isfloating  monitor
+    /* class, instance, title, tags mask, isfloating, isterminal, noswallow,
+     * monitor
      */
-    {"Yad", "yad", "Termbin Get", 0, 1, -1},
-    {NULL, NULL, "Zoom Meeting", 1 << 8, 1, -1},
-    {NULL, NULL, "Zoom", 1 << 8, 1, -1},
-    {"discord", NULL, NULL, 1 << 2, 0, -1},
-    {"Signal", NULL, NULL, 1 << 3, 0, -1},
-    {"Xournalpp", NULL, NULL, 1 << 4, 0, -1},
-    {"VSCodium", NULL, NULL, 1 << 7, 0, -1},
-    {"whatsapp-nativefier-d40211", NULL, NULL, 1 << 3, 0, -1},
-};
+    {"Yad", "yad", "Termbin Get", 0, 1, 0, 0, -1},
+    {NULL, NULL, "Zoom Meeting", 1 << 8, 1, 0, 0, -1},
+    {NULL, NULL, "Zoom", 1 << 8, 1, 0, 0, -1},
+    {"discord", NULL, NULL, 1 << 2, 0, 0, 0, -1},
+    {"Signal", NULL, NULL, 1 << 3, 0, 0, 0, -1},
+    {"Xournalpp", NULL, NULL, 1 << 4, 0, 0, 0, -1},
+    {"VSCodium", NULL, NULL, 1 << 7, 0, 0, 0, -1},
+    {"whatsapp-nativefier-d40211", NULL, NULL, 1 << 3, 0, 0, 0, -1},
+    {"kitty", "kitty", NULL, 0, 0, 1, 0, -1}};
 
 /* layout(s) */
 static const float mfact = 0.55; /* factor of master area size [0.05..0.95] */
@@ -117,7 +120,8 @@ static Key keys[] = {
     {MODKEY | ShiftMask, XK_s, spawn,
      SHCMD("maim -s | copyq write image/png - && copyq select 0")},
     {MODKEY, XK_f, spawn,
-     SHCMD("feh --randomize gdrive/wallpaper --bg-fill --no-fehbg")},
+     SHCMD("feh --randomize gdrive/wallpaper --bg-fill --no-fehbg && "
+           "statusbar-update")},
     {MODKEY, XK_period, spawn, RUNCMD("emoji-chooser")},
     {MODKEY, XK_v, spawn, {.v = copymenu}},
 
