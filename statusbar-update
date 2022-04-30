@@ -15,8 +15,11 @@ function getbattery() {
     [[ $(cat /sys/class/power_supply/BAT0/status) = "Discharging" ]] || val="⟨"$val"⟩"
     echo $val
 }
+function get_dnd() {
+    [[ $(dunstctl is-paused) == "true" ]] && echo " ﮖ |"
+}
 function getstatus() {
-    echo  " $(getevents) │ $(date +%A\ %b\ %d\ \│\ %R) │ $(getbattery) "
+    echo  "$(get_dnd) $(getevents) │ $(date +%A\ %b\ %d\ \│\ %R) │ $(getbattery) "
 }
 xsetroot -name "$(getstatus)"
 

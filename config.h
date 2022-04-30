@@ -150,6 +150,8 @@ static Key keys[] = {
     {0, XF86XK_MonBrightnessUp, spawn, SHCMD("light -A 10")},
     {0, XF86XK_AudioRaiseVolume, spawn, SHCMD("pamixer -i 5 && audio-notify")},
     {0, XF86XK_AudioLowerVolume, spawn, SHCMD("pamixer -d 5 && audio-notify")},
+    {MODKEY, XF86XK_AudioMute, spawn,
+     SHCMD("dunstctl set-paused toggle && statusbar-update")},
     {0, XF86XK_AudioMute, spawn, SHCMD("pamixer -t && audio-notify")},
     {0, XF86XK_AudioNext, spawn, SHCMD("playerctl -a next")},
     {0, XF86XK_AudioPlay, spawn, SHCMD("playerctl -a play-pause")},
