@@ -67,8 +67,9 @@ static const Layout layouts[] = {
 #define TAGKEYS(KEY, TAG)                                                      \
   {MODKEY, KEY, view, {.ui = 1 << TAG}},                                       \
       {MODKEY | ControlMask, KEY, toggleview, {.ui = 1 << TAG}},               \
-      {MODKEY | ShiftMask, KEY, tag, {.ui = 1 << TAG}},                        \
-      {MODKEY | ControlMask | ShiftMask, KEY, toggletag, {.ui = 1 << TAG}},
+      {MODKEY | ShiftMask, KEY, tag, {.ui = 1 << TAG}}, {                      \
+    MODKEY | ControlMask | ShiftMask, KEY, toggletag, { .ui = 1 << TAG }       \
+  }
 
 /* helper for spawning shell commands in the pre dwm-5.0 fashion */
 #define SHCMD(cmd)                                                             \
@@ -160,11 +161,17 @@ static Key keys[] = {
     {MODKEY, XK_Delete, spawn, RUNCMD("networkmanager_dmenu")},
     {MODKEY, XK_Insert, spawn, RUNCMD("bluetoothctl-dmenu")},
 
-    TAGKEYS(XK_1, 0) TAGKEYS(XK_2, 1) TAGKEYS(XK_3, 2) TAGKEYS(XK_4, 3)
-        TAGKEYS(XK_5, 4) TAGKEYS(XK_6, 5) TAGKEYS(XK_7, 6) TAGKEYS(XK_8, 7)
-            TAGKEYS(XK_9, 8)
+    TAGKEYS(XK_1, 0),
+    TAGKEYS(XK_2, 1),
+    TAGKEYS(XK_3, 2),
+    TAGKEYS(XK_4, 3),
+    TAGKEYS(XK_5, 4),
+    TAGKEYS(XK_6, 5),
+    TAGKEYS(XK_7, 6),
+    TAGKEYS(XK_8, 7),
+    TAGKEYS(XK_9, 8),
 
-                {MODKEY | ShiftMask, XK_x, spawn, SHCMD("systemctl suspend")},
+    {MODKEY | ShiftMask, XK_x, spawn, SHCMD("systemctl suspend")},
     {MODKEY | ControlMask, XK_x, spawn, SHCMD("systemctl hybrid-sleep")},
 
     {MODKEY | ShiftMask, XK_c, quit, {.i = EXIT_SUCCESS}},
@@ -187,4 +194,9 @@ static Button buttons[] = {
     {ClkTagBar, 0, Button1, view, {0}},
     {ClkTagBar, 0, Button3, toggleview, {0}},
     {ClkTagBar, MODKEY, Button3, toggletag, {0}},
+    {ClkRootWin, 0, Button1, spawn, RUNCMD("kitty")},
+    {ClkRootWin, 0, Button3, spawn, RUNCMD("dmenu-all")},
+    {ClkRootWin, MODKEY, Button1, spawn, RUNCMD("system-monitoring-center")},
+    {ClkWinTitle, 0, Button1, spawn, RUNCMD("dmenu-all")},
+    {ClkWinTitle, 0, Button3, spawn, RUNCMD("todo")},
 };
