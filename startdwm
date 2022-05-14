@@ -3,7 +3,7 @@ while true; do
     unset HTTP_PROXY FTP_PROXY RSYNC_PROXY NO_PROXY HTTPS_PROXY
     source /etc/environment
     # Log stderror to a file
-    dwm 2> ~/.dwm.log
+    dwm 2> ~/.cache/.dwm.log
     retval=$?
     echo $retval > /home/dhruva/test.log
     [[ $retval -eq 1 ]] && break
