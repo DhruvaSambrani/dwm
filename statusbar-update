@@ -18,8 +18,21 @@ function getbattery() {
 function get_dnd() {
     [[ $(dunstctl is-paused) == "true" ]] && echo " ﮖ |"
 }
+function getBTbattery() {
+    level=$(dbus-send --print-reply=literal --system \
+        --dest=org.bluez /org/bluez/hci0/dev_74_45_CE_1E_7D_60 \
+        org.freedesktop.DBus.Properties.Get string:"org.bluez.Battery1"\
+        string:"Percentage" | 
+        sed -E "s/[[:space:]]{1,}/,/g" | 
+        cut -d ',' -f 4)
+    if [[ -z "$level" ]]; then
+        echo ""
+    else
+        echo "|" $level " "
+    fi
+}
 function getstatus() {
-    echo  "$(get_dnd) $(getevents) │ $(date +%A\ %b\ %d\ \│\ %R) │ $(getbattery) "
+    echo  "$(get_dnd) $(getevents) │ $(date +%A\ %b\ %d\ \│\ %R) │ $(getbattery) $(getBTbattery)"
 }
 xsetroot -name "$(getstatus)"
 
