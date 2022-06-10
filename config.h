@@ -40,6 +40,7 @@ static const Rule rules[] = {
     {"Yad", "yad", "Termbin Get", 0, 1, 0, 0, -1},
     {NULL, NULL, "Zoom Meeting", 1 << 8, 1, 0, 0, -1},
     {NULL, NULL, "Zoom", 1 << 8, 1, 0, 0, -1},
+    {"Microsoft Teams - Preview", NULL, NULL, 1 << 8, 1, 0, 0, -1},
     {"discord", NULL, NULL, 1 << 2, 0, 0, 0, -1},
     {"Signal", NULL, NULL, 1 << 3, 0, 0, 0, -1},
     {"Xournalpp", NULL, NULL, 1 << 4, 0, 0, 0, -1},
@@ -96,7 +97,7 @@ static const char *calccmd[] = {
 static const char *copymenu[] = {"copyq", "menu", NULL};
 
 static Key keys[] = {
-    /* modifier             key                         function        argument
+    /* modifie key function argument
      */
     {MODKEY, XK_Return, spawn, RUNCMD("kitty")},
     {MODKEY, XK_d, spawn, {.v = dmenucmd}},
@@ -109,11 +110,10 @@ static Key keys[] = {
     {MODKEY, XK_s, spawn, {.v = signalcmd}},
 
     {MODKEY | ShiftMask, XK_t, spawn, RUNCMD("todo")},
-    {MODKEY, XK_r, spawn, RUNCMD("passmenu")},
 
     {MODKEY | ShiftMask, XK_p, spawn, RUNCMD("pavucontrol")},
     {MODKEY, XK_e, spawn, RUNCMD("nautilus")},
-    {MODKEY | ShiftMask, XK_Return, zoom, {0}},
+    {MODKEY, XK_v, spawn, {.v = copymenu}},
 
     {MODKEY | ControlMask, XK_s, spawn,
      SHCMD("maim -s > $( find ~/idrive -type d | dmenu )/$(date "
@@ -123,9 +123,8 @@ static Key keys[] = {
     {MODKEY, XK_f, spawn,
      SHCMD("feh --randomize gdrive/wallpaper --bg-fill --no-fehbg && "
            "statusbar-update")},
-    {MODKEY, XK_period, spawn, RUNCMD("emoji-chooser")},
-    {MODKEY, XK_v, spawn, {.v = copymenu}},
 
+    {MODKEY | ShiftMask, XK_Return, zoom, {0}},
     {MODKEY, XK_b, togglebar, {0}},
     {MODKEY, XK_j, focusstack, {.i = +1}},
     {MODKEY, XK_k, focusstack, {.i = -1}},

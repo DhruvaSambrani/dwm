@@ -19,8 +19,9 @@ function get_dnd() {
     [[ $(dunstctl is-paused) == "true" ]] && echo " ﮖ |"
 }
 function getBTbattery() {
+    device_uuid="$(bluetoothctl info | head -1 | sed -E "s/.*\ (.*)\ .*/\1/g;s/:/_/g")"
     level=$(dbus-send --print-reply=literal --system \
-        --dest=org.bluez /org/bluez/hci0/dev_74_45_CE_1E_7D_60 \
+      --dest=org.bluez /org/bluez/hci0/dev_$device_uuid \
         org.freedesktop.DBus.Properties.Get string:"org.bluez.Battery1"\
         string:"Percentage" | 
         sed -E "s/[[:space:]]{1,}/,/g" | 
