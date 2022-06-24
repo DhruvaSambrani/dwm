@@ -101,7 +101,7 @@ static Key keys[] = {
     {MODKEY, XK_Return, spawn, RUNCMD("kitty")},
     {MODKEY, XK_d, spawn, {.v = dmenucmd}},
 
-    {MODKEY, XK_F2, spawn, RUNCMD("firefox")},
+    {MODKEY, XK_F2, spawn, RUNCMD("qutebrowser")},
     {MODKEY, XK_z, spawn, RUNCMD("zoom")},
     {MODKEY, XK_w, spawn, RUNCMD("whatsapp-nativefier")},
     {MODKEY | ShiftMask, XK_d, spawn, RUNCMD("discord")},
