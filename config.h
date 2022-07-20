@@ -46,8 +46,7 @@ static const Rule rules[] = {
     {"Zotero", NULL, NULL, 1 << 4, 0, 0, 0, -1},
     {"Hamsket", NULL, NULL, 1 << 2, 0, 0, 0, -1},
     {"kitty", "kitty", NULL, 0, 0, 1, 0, -1},
-    {"eww-cal", "eww-cal", NULL, 1, 1, 0, 1, -1}
-};
+    {"eww-cal", "eww-cal", NULL, 1, 1, 0, 1, -1}};
 
 /* layout(s) */
 static const float mfact = 0.55; /* factor of master area size [0.05..0.95] */
@@ -110,7 +109,8 @@ static Key keys[] = {
     {MODKEY | ShiftMask, XK_d, spawn, RUNCMD("hamsket")},
     {MODKEY, XF86XK_AudioPlay, spawn, {.v = sptcmd}},
     {MODKEY, XK_s, spawn, {.v = signalcmd}},
-
+    {MODKEY, XK_0, view, {.ui = ~0}},
+    {MODKEY, XK_o, winview, {0}},
     {MODKEY | ShiftMask, XK_t, spawn, RUNCMD("todo")},
 
     {MODKEY | ShiftMask, XK_p, spawn, RUNCMD("pavucontrol")},
@@ -130,8 +130,6 @@ static Key keys[] = {
     {MODKEY, XK_b, togglebar, {0}},
     {MODKEY, XK_j, focusstack, {.i = +1}},
     {MODKEY, XK_k, focusstack, {.i = -1}},
-    {MODKEY, XK_i, incnmaster, {.i = +1}},
-    {MODKEY, XK_o, incnmaster, {.i = -1}},
     {MODKEY, XK_h, setmfact, {.f = -0.05}},
     {MODKEY, XK_l, setmfact, {.f = +0.05}},
 
