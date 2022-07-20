@@ -6,7 +6,8 @@ function getnetwork(){
     echo $network
 }
 function getevents() {
-    d=$(calcurse -n | tail -1 | sed "s/^[[:space:]]*//g")
+    d=$(qcal -cron 15 | perl -pe 's|.*? (.*?) (.{0,20}).* \(until (.*)\)|[\1] \2|')
+    # d=$(calcurse -n | tail -1 | sed "s/^[[:space:]]*//g")
     [[ -z "$d" ]] && d="Freee!"
     echo $d
 }
@@ -22,7 +23,7 @@ function getBTbattery() {
     device_uuid="$(bluetoothctl info | head -1 | sed -E "s/.*\ (.*)\ .*/\1/g;s/:/_/g")"
     level=$(dbus-send --print-reply=literal --system \
       --dest=org.bluez /org/bluez/hci0/dev_$device_uuid \
-        org.freedesktop.DBus.Properties.Get string:"org.bluez.Battery1"\
+        org.freedesktop.DBus.Properties.Get string:"org.bluez.Battery0"\
         string:"Percentage" | 
         sed -E "s/[[:space:]]{1,}/,/g" | 
         cut -d ',' -f 4)

@@ -27,7 +27,7 @@ static const char *colors[][3] = {
 };
 
 /* tagging */
-static const char *tags[] = {"1", "2", "ﭮ", "", "", "6", "7", "", ""};
+static const char *tags[] = {"1", "2", "", "4", "", "6", "7", "", ""};
 
 static const Rule rules[] = {
     /* xprop(1):
@@ -40,13 +40,13 @@ static const Rule rules[] = {
     {"Yad", "yad", "Termbin Get", 0, 1, 0, 0, -1},
     {NULL, NULL, "Zoom Meeting", 1 << 8, 1, 0, 0, -1},
     {NULL, NULL, "Zoom", 1 << 8, 1, 0, 0, -1},
-    {"Microsoft Teams - Preview", NULL, NULL, 1 << 8, 1, 0, 0, -1},
-    {"discord", NULL, NULL, 1 << 2, 0, 0, 0, -1},
-    {"Signal", NULL, NULL, 1 << 3, 0, 0, 0, -1},
+    {"Signal", NULL, NULL, 1 << 2, 0, 0, 0, -1},
     {"Xournalpp", NULL, NULL, 1 << 4, 0, 0, 0, -1},
     {"VSCodium", NULL, NULL, 1 << 7, 0, 0, 0, -1},
-    {"whatsapp-nativefier-d40211", NULL, NULL, 1 << 3, 0, 0, 0, -1},
-    {"kitty", "kitty", NULL, 0, 0, 1, 0, -1}};
+    {"Zotero", NULL, NULL, 1 << 4, 0, 0, 0, -1},
+    {"Hamsket", NULL, NULL, 1 << 2, 0, 0, 0, -1},
+    {"kitty", "kitty", NULL, 0, 0, 1, 0, -1}
+};
 
 /* layout(s) */
 static const float mfact = 0.55; /* factor of master area size [0.05..0.95] */
@@ -104,8 +104,9 @@ static Key keys[] = {
 
     {MODKEY, XK_F2, spawn, RUNCMD("firefox")},
     {MODKEY, XK_z, spawn, RUNCMD("zoom")},
-    {MODKEY, XK_w, spawn, RUNCMD("whatsapp-nativefier")},
-    {MODKEY | ShiftMask, XK_d, spawn, RUNCMD("discord")},
+    {MODKEY, XK_w, spawn, RUNCMD("hamsket")},
+    {MODKEY | ShiftMask, XK_z, spawn, RUNCMD("zotero")},
+    {MODKEY | ShiftMask, XK_d, spawn, RUNCMD("hamsket")},
     {MODKEY, XF86XK_AudioPlay, spawn, {.v = sptcmd}},
     {MODKEY, XK_s, spawn, {.v = signalcmd}},
 
