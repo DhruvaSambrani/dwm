@@ -9,9 +9,9 @@ static const int swallowfloating =
 static const int showbar = 1; /* 0 means no bar */
 static const int topbar = 1;  /* 0 means bottom bar */
 static const char *fonts[] = {
-    "Fira Code Medium:size=10",
-    "Noto Color Emoji:size=10",
-    "FuraCode Nerd Font:size=13",
+    "Fira Code Medium:size=8",
+    "Noto Color Emoji:size=8",
+    "FuraCode Nerd Font:size=10",
 };
 static const char dmenufont[] = "Fira Code Retina:size=10";
 static const char col_gray1[] = "#111111";
@@ -61,6 +61,7 @@ static const Layout layouts[] = {
     {"T", tile}, /* first entry is default */
     {"X", NULL}, /* no layout function means floating behavior */
     {"M", monocle},
+    {"_", clear},
 };
 
 /* key definitions */
@@ -96,6 +97,8 @@ static const char *calccmd[] = {
     "CALCURSE_PAGER=/home/dhruva/.scripts/tools/calcurse-pager calcurse", NULL};
 static const char *copymenu[] = {"copyq", "menu", NULL};
 
+
+#include "clear.c"
 static Key keys[] = {
     /* modifie key function argument
      */
@@ -136,6 +139,7 @@ static Key keys[] = {
     {MODKEY, XK_t, setlayout, {.v = &layouts[0]}},
     {MODKEY, XK_x, setlayout, {.v = &layouts[1]}},
     {MODKEY, XK_m, setlayout, {.v = &layouts[2]}},
+    {MODKEY, XK_minus, setlayout, {.v = &layouts[3]}},
 
     {MODKEY, XK_Tab, view, {0}},
     {MODKEY | ShiftMask, XK_l, spawn, RUNCMD("slock")},
