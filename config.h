@@ -2,7 +2,7 @@
 #include <X11/XF86keysym.h>
 
 /* appearance */
-static const unsigned int borderpx = 3; /* border pixel of windows */
+static const unsigned int borderpx = 1; /* border pixel of windows */
 static const unsigned int snap = 32;    /* snap pixel */
 static const int swallowfloating =
     1;                        /* 1 means swallow floating windows by default */
@@ -45,7 +45,8 @@ static const Rule rules[] = {
     {"VSCodium", NULL, NULL, 1 << 7, 0, 0, 0, -1},
     {"Zotero", NULL, NULL, 1 << 4, 0, 0, 0, -1},
     {"Hamsket", NULL, NULL, 1 << 2, 0, 0, 0, -1},
-    {"kitty", "kitty", NULL, 0, 0, 1, 0, -1}
+    {"kitty", "kitty", NULL, 0, 0, 1, 0, -1},
+    {"eww-cal", "eww-cal", NULL, 1, 1, 0, 1, -1}
 };
 
 /* layout(s) */
