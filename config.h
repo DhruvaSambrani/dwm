@@ -20,10 +20,29 @@ static const char col_gray3[] = "#bbbbbb";
 static const char col_gray4[] = "#ffffff";
 static const char col_primary[] = "#2bafc6";
 static const char col_secondary[] = "#11c654";
+
 static const char *colors[][3] = {
     /*               fg         bg         border   */
     [SchemeNorm] = {col_primary, col_gray1, col_gray1},
     [SchemeSel] = {col_secondary, col_gray1, col_primary},
+    [SchemeStatus] = {"#ffffff", "#26547c",
+                      "#000000"}, // Statusbar right {text,background,not used
+                                  // but cannot be empty}
+    [SchemeTagsSel] = {"#edae49", col_gray1,
+                       "#000000"}, // Tagbar left selected {text,background,not
+                                   // used but cannot be empty}
+    [SchemeTagsNorm] =
+        {col_gray1, "#edae49",
+         "#000000"}, // Tagbar left unselected {text,background,not used but
+                     // cannot be empty}
+    [SchemeInfoSel] =
+        {"#000000", "#d1495b",
+         "#000000"}, // infobar middle  selected {text,background,not used but
+                     // cannot be empty}
+    [SchemeInfoNorm] =
+        {"#000000", "#d1495b",
+         "#000000"}, // infobar middle  unselected {text,background,not used but
+                     // cannot be empty}
 };
 
 /* tagging */
@@ -96,7 +115,6 @@ static const char *calccmd[] = {
     "kitty", "zsh", "-c",
     "CALCURSE_PAGER=/home/dhruva/.scripts/tools/calcurse-pager calcurse", NULL};
 static const char *copymenu[] = {"copyq", "menu", NULL};
-
 
 #include "clear.c"
 static Key keys[] = {
