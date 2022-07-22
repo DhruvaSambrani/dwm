@@ -65,7 +65,11 @@ static const Rule rules[] = {
     {"Zotero", NULL, NULL, 1 << 4, 0, 0, 0, -1},
     {"Hamsket", NULL, NULL, 1 << 2, 0, 0, 0, -1},
     {"kitty", "kitty", NULL, 0, 0, 1, 0, -1},
-    {"eww-cal", "eww-cal", NULL, 1, 1, 0, 1, -1}};
+    {"Anoise.py", NULL, NULL, 1 << 8, 1, 0, 1, -1},
+    {"eww-cal", "eww-cal", NULL, 1 << 8, 1, 0, 1, -1},
+    {"eww-mus", "eww-mus", NULL, 1 << 8, 1, 0, 1, -1},
+    {"eww-mail", "eww-mail", NULL, 1 << 8, 1, 0, 1, -1},
+};
 
 /* layout(s) */
 static const float mfact = 0.55; /* factor of master area size [0.05..0.95] */
@@ -111,9 +115,10 @@ static char dmenumon[2] =
 static const char *dmenucmd[] = {"dmenu-all", NULL};
 static const char *signalcmd[] = {"signal-desktop", "--use-tray-icon", NULL};
 static const char *sptcmd[] = {"kitty", "spt", NULL};
-static const char *calccmd[] = {
+/*static const char *calccmd[] = {
     "kitty", "zsh", "-c",
     "CALCURSE_PAGER=/home/dhruva/.scripts/tools/calcurse-pager calcurse", NULL};
+*/
 static const char *copymenu[] = {"copyq", "menu", NULL};
 
 #include "clear.c"
@@ -129,6 +134,8 @@ static Key keys[] = {
     {MODKEY | ShiftMask, XK_z, spawn, RUNCMD("zotero")},
     {MODKEY | ShiftMask, XK_d, spawn, RUNCMD("hamsket")},
     {MODKEY, XF86XK_AudioPlay, spawn, {.v = sptcmd}},
+    {0 | ShiftMask, XF86XK_AudioPlay, spawn, RUNCMD("anoise")},
+    {0 | ControlMask, XF86XK_AudioPlay, spawn, SHCMD("kill $(ps -ef | grep anoise.py | head -1 | perl -pe \"s/dhruva *(.*?) .*/\\1/\")")},
     {MODKEY, XK_s, spawn, {.v = signalcmd}},
     {MODKEY, XK_0, view, {.ui = ~0}},
     {MODKEY, XK_o, winview, {0}},
@@ -157,10 +164,11 @@ static Key keys[] = {
     {MODKEY, XK_t, setlayout, {.v = &layouts[0]}},
     {MODKEY, XK_x, setlayout, {.v = &layouts[1]}},
     {MODKEY, XK_m, setlayout, {.v = &layouts[2]}},
+    {MODKEY, XK_minus, togglebar, {0}},
     {MODKEY, XK_minus, setlayout, {.v = &layouts[3]}},
 
     {MODKEY, XK_Tab, view, {0}},
-    {MODKEY | ShiftMask, XK_l, spawn, RUNCMD("slock")},
+    {MODKEY | ShiftMask, XK_l, spawn, SHCMD("loginctl lock-session")},
     {MODKEY | ShiftMask, XK_q, killclient, {0}},
 
     {MODKEY, XK_Menu, spawn,
@@ -205,10 +213,9 @@ static Key keys[] = {
 static Button buttons[] = {
     /* click                event mask          button          function
        argument */
-    {ClkLtSymbol, 0, Button1, setlayout, {0}},
-    {ClkLtSymbol, 0, Button3, setlayout, {.v = &layouts[2]}},
-    {ClkStatusText, 0, Button1, spawn, {.v = calccmd}},
-    {ClkStatusText, 0, Button3, spawn, RUNCMD("pavucontrol")},
+    {ClkLtSymbol, 0, Button1, setlayout, {.v = &layouts[3]}},
+    {ClkLtSymbol, 0, Button1, togglebar, {0}},
+    {ClkStatusText, 0, Button1, spawn, RUNCMD("pavucontrol")},
     {ClkClientWin, MODKEY, Button1, movemouse, {0}},
     {ClkClientWin, MODKEY, Button3, togglefloating, {0}},
     {ClkClientWin, MODKEY | ShiftMask, Button1, resizemouse, {0}},
@@ -218,6 +225,7 @@ static Button buttons[] = {
     {ClkRootWin, 0, Button1, spawn, RUNCMD("kitty")},
     {ClkRootWin, 0, Button3, spawn, RUNCMD("dmenu-all")},
     {ClkRootWin, MODKEY, Button1, spawn, RUNCMD("system-monitoring-center")},
-    {ClkWinTitle, 0, Button1, spawn, RUNCMD("dmenu-all")},
-    {ClkWinTitle, 0, Button3, spawn, RUNCMD("todo")},
+    {ClkWinTitle, 0, Button1, setlayout, {.v = &layouts[3]}},
+    {ClkWinTitle, 0, Button1, togglebar, {0}},
+    {ClkWinTitle, 0, Button3, spawn, RUNCMD("dmenu-all")},
 };
